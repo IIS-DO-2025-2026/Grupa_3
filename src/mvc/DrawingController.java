@@ -3,7 +3,10 @@ package mvc;
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 
+import command.AddPointCmd;
+
 public class DrawingController {
+	
 	DrawingModel model;
 	DrawingFrame frame;
 	
@@ -12,11 +15,16 @@ public class DrawingController {
 		this.frame = frame;
 	}
 
-	public void drawPoint(MouseEvent e) {
-		Point p1 = new Point(e.getX(), e.getY(), Color.BLACK);
-		model.add(p1);
-		frame.repaint();
+	public void mouseClicked(MouseEvent e) {
+		Point p = new Point(e.getX(), e.getY(), Color.RED);
+		//model.add(p);
+		AddPointCmd addPointCmd = new AddPointCmd(model, p);
+		addPointCmd.execute();	
+		//undoStack.add(addPointCmd);
 		
+		frame.repaint();
+		//System.out.println(System.currentTimeMillis());
 	}
+
 
 }

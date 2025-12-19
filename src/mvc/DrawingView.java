@@ -6,19 +6,23 @@ import java.util.Iterator;
 import javax.swing.JPanel;
 
 public class DrawingView extends JPanel {
-	// Jedini izuzetak od početne MVC strukture
-	DrawingModel model = new DrawingModel();
 	
-	public void paint(Graphics g) {
-		Iterator<Point> it = model.getShapes().iterator();
-		while(it.hasNext())
-			it.next().draw(g);
-	}
+	// DrawingModel model;
+	// izuzetak od pocetne mvc arhitekture, jer model pri pokretanju pravi problem ukoliko je null
+	DrawingModel model = new DrawingModel();
 
 	public void setModel(DrawingModel model) {
 		this.model = model;
 	}
 	
-	
+	public void paint(Graphics g) {
+		Iterator<Shape> it = model.getShapes().iterator();
+		while(it.hasNext()) {
+			it.next().draw(g);
+		}
+		//pozivanje metode u svakoj milisekundi
+		//repaint();
+		//System.out.println(System.currentTimeMillis());
+	}
 
 }
