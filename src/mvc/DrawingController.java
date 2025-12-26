@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.event.MouseEvent;
 
 import command.AddPointCmd;
+import composite.Vojvodina;
 
 public class DrawingController {
 	
@@ -16,6 +17,7 @@ public class DrawingController {
 	}
 
 	public void mouseClicked(MouseEvent e) {
+		/* Testiranje MVC i Command obrasca
 		Point p = new Point(e.getX(), e.getY(), Color.RED);
 		//model.add(p);
 		AddPointCmd addPointCmd = new AddPointCmd(model, p);
@@ -23,7 +25,20 @@ public class DrawingController {
 		//undoStack.add(addPointCmd);
 		
 		frame.repaint();
-		//System.out.println(System.currentTimeMillis());
+		*/
+		
+		// Testiranje Composite obrasca
+		Point backa = new Point(e.getX(), e.getY(), Color.BLUE);
+		Point srem = new Point(e.getX()+10, e.getY(), Color.BLUE);
+		Point banat = new Point(e.getX()+5, e.getY()-8, Color.BLUE);
+		
+		Vojvodina vojvodina = new Vojvodina();
+		vojvodina.add(backa);
+		vojvodina.add(srem);
+		vojvodina.add(banat);
+		
+		model.add(vojvodina);
+		frame.repaint();
 	}
 
 

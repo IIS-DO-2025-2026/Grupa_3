@@ -10,10 +10,6 @@ public class DrawingView extends JPanel {
 	// DrawingModel model;
 	// izuzetak od pocetne mvc arhitekture, jer model pri pokretanju pravi problem ukoliko je null
 	DrawingModel model = new DrawingModel();
-
-	public void setModel(DrawingModel model) {
-		this.model = model;
-	}
 	
 	public void paint(Graphics g) {
 		Iterator<Shape> it = model.getShapes().iterator();
@@ -23,6 +19,10 @@ public class DrawingView extends JPanel {
 		//pozivanje metode u svakoj milisekundi
 		//repaint();
 		//System.out.println(System.currentTimeMillis());
+	}
+	
+	public void setModel(DrawingModel model) {
+		this.model = model;
 	}
 
 }
